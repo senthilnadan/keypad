@@ -1,0 +1,103 @@
+$padWidth: 100px;
+$padHeight: 80px;
+$row: 3;
+$col: 6;
+$darkAccent: #224b4b;
+$lightAccent: #2cda9d;
+$backgroundBase: #619e9e;
+$shadow: 1px 1px 10px 2px darken($backgroundBase, 20%);
+$default-border: 1px solid darken($backgroundBase, 35%);
+
+@import url("https://fonts.googleapis.com/css?family=Russo+One");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:ital@0;1&display=swap");
+
+body {
+  font-family: Russo One, "Noto Serif Tamil", serif;
+}
+
+body {
+  user-select: none;
+  background-color: lighten(grey, 5%);
+}
+
+.colorScheme {
+  background-color: lighten($backgroundBase, 30%);
+  border: $default-border;
+  box-shadow: $shadow;
+  border-top: none;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  background-color: salmon;
+  align-items: center;
+  height: 100vh;
+}
+
+.text-container {
+  width: $padWidth * $col + (15 * $col);
+  height: 100px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  > textarea {
+    @extend .colorScheme;
+    font-family: "Noto Serif Tamil script=tamil rev=1";
+    font-weight: 300;
+    font-size: medium;
+    font-style: italic;
+    line-height: initial;
+    width: $padWidth * $col + (12 * $col);
+    height: 90px;
+    margin-left: 4px;
+  }
+}
+
+.keyboard-container {
+  justify-content: center;
+  outline: 5px solid black;
+  position: flex;
+  width: $padWidth * $col + (15 * $col);
+  height: $padHeight * $row + (10 * $row);
+  align-content: center;
+  background-color: lighten(grey, 20%);
+  .key-bank {
+    @extend .colorScheme;
+    width: $padWidth * $col + (12 * $col);
+    height: $padHeight * $row + (6 * $row);
+    justify-content: center;
+    display: inline-block;
+    padding-left: 8px;
+    margin: 3px;
+    .row-item {
+      width: $padWidth * $col + (8 * $col);
+      height: $padHeight + 2;
+      position: relative;
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: center;
+      align-content: center;
+      z-index: 100;
+      margin-right: 10px;
+      border-radius: 5px;
+      padding-top: 5px;
+      box-sizing: border-box;
+      cursor: pointer;
+      .key-item {
+        @extend .colorScheme;
+        display: grid;
+        grid-auto-flow: column;
+        height: $padHeight -10;
+        width: $padWidth;
+        margin-right: 4px;
+        z-index: 200;
+        border-radius: 4px;
+        text-align: center;
+        > button {
+          @extend .colorScheme;
+          height: $padHeight;
+        }
+      }
+    }
+  }
+}
