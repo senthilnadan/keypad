@@ -1,5 +1,7 @@
 $padWidth: 100px;
 $padHeight: 80px;
+$panelWidth: 100px;
+$panelHeight: 240px;
 $row: 3;
 $col: 6;
 $darkAccent: #224b4b;
@@ -54,48 +56,102 @@ body {
 }
 
 .keyboard-container {
-  justify-content: center;
   outline: 5px solid black;
-  position: flex;
-  width: $padWidth * $col + (15 * $col);
-  height: $padHeight * $row + (10 * $row);
-  align-content: center;
+  display: grid;
+  border: 4px;
+  grid-template-columns: auto auto auto auto auto auto;
+  gap: 5px;
   background-color: lighten(grey, 20%);
+
   .key-bank {
     @extend .colorScheme;
-    width: $padWidth * $col + (12 * $col);
-    height: $padHeight * $row + (6 * $row);
-    justify-content: center;
-    display: inline-block;
-    padding-left: 8px;
-    margin: 3px;
-    .row-item {
-      width: $padWidth * $col + (8 * $col);
-      height: $padHeight + 2;
-      position: relative;
+    grid-area: 2 / 2 / 15/ 11;
+    > .key-rows {
       display: grid;
-      grid-auto-flow: column;
-      justify-content: center;
-      align-content: center;
-      z-index: 100;
-      margin-right: 10px;
-      border-radius: 5px;
-      padding-top: 5px;
-      box-sizing: border-box;
-      cursor: pointer;
-      .key-item {
-        @extend .colorScheme;
-        display: grid;
-        grid-auto-flow: column;
-        height: $padHeight -10;
-        width: $padWidth;
-        margin-right: 4px;
-        z-index: 200;
-        border-radius: 4px;
-        text-align: center;
-        > button {
-          @extend .colorScheme;
+      grid-template-rows: auto, auto, auto;
+      > .row-item {
+        display: flex;
+        > .key-item {
+          width: $padWidth;
           height: $padHeight;
+          > button {
+            width: $padWidth;
+            height: $padHeight;
+          }
+        }
+      }
+    }
+  }
+  .left-panel {
+    @extend .colorScheme;
+    grid-area: 2 / 1 / 15/ 2;
+    > .panel {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 0;
+      width: $panelWidth;
+      > .key-item {
+        width: $panelWidth;
+        height: calc($panelHeight/3);
+        > button {
+          width: $panelWidth;
+          height: calc($panelHeight/3);
+        }
+      }
+    }
+  }
+  .top-panel {
+    @extend .colorScheme;
+    grid-area: 1 / 1 / 2/ 12;
+    .panel {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 0;
+      padding: 5px;
+      width: $panelWidth * 2;
+      > .key-item {
+        width: $panelWidth * 2;
+        height: calc($panelHeight/3);
+        > button {
+          width: $panelWidth * 2;
+          height: calc($panelHeight/3);
+        }
+      }
+    }
+  }
+  .right-panel {
+    @extend .colorScheme;
+    grid-area: 2 / 11 / 15/ 12;
+    .panel {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 0;
+      width: $panelWidth;
+      > .key-item {
+        width: $panelWidth;
+        height: calc($panelHeight/3);
+        > button {
+          width: $panelWidth;
+          height: calc($panelHeight/3);
+        }
+      }
+    }
+  }
+  .bottom-panel {
+    @extend .colorScheme;
+    grid-area: 15 / 1 / 22/ 12;
+    .panel {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 0;
+      padding: 5px;
+      width: $panelWidth;
+      > .key-item {
+        width: $panelWidth * 4;
+        height: calc($panelHeight/3);
+        > button {
+          width: $panelWidth * 4;
+          height: calc($panelHeight / 3);
         }
       }
     }
